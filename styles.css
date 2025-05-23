@@ -144,6 +144,7 @@ nav {
     position: relative;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
+    background: #000; /* Black background for letterboxing */
 }
 
 #hero-video {
@@ -152,8 +153,16 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border: none;
+    object-fit: cover; /* Cover the entire container, may crop video */
+    background-color: #000; /* Black background for letterboxing */
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .video-container {
+        margin: 1rem auto;
+        border-radius: 8px;
+    }
 }
 
 /* Projects Section */
@@ -202,29 +211,27 @@ nav {
 
 .reason-list {
     list-style: none;
-    padding: 0;
-    margin: 0 0 1.5rem 0;
-    flex-grow: 1;
+    padding: 0 0 0 2rem;
+    margin: 1.2rem 0;
 }
 
 .reason-list li {
-    color: #555;
-    margin-bottom: 0.6rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    padding-left: 1.5rem;
     position: relative;
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: #333;
+    font-size: 0.8rem;
 }
 
 .reason-list li:before {
     content: '•';
-    color: #007bff;
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1.5rem;
     position: absolute;
-    left: 0;
+    left: -1.5rem;
+    color: #8a2be2;
+    font-size: 1.5em;
+    line-height: 0.8;
+    vertical-align: middle;
 }
 
 .project-btn {
@@ -396,8 +403,8 @@ nav {
     
     /* Hero Section */
     .hero {
-        padding-top: 4rem;
-        padding-bottom: 2rem;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
     }
     
     .hero-content h1 {

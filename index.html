@@ -32,14 +32,50 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Welcome to InclusiveVidPose</h1>
-            <p>First Video Pose Dataset for Individuals with Limb Deficiencies</p>
+            <!-- <h1>Welcome to InclusiveVidPose</h1>
+            <p>First Video Pose Dataset for Individuals with Limb Deficiencies</p> -->
             <div class="video-container">
                 <video id="hero-video" controls autoplay muted loop playsinline>
                     <source src="video/demo_web.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div id="video-debug" style="position: relative; z-index: 5; margin-top: 0px; padding: 0px; background: rgba(0,0,0,0.7); color: white; border-radius: 4px; font-family: monospace;">
+                    <p>Video debug information:</p>
+                    <pre id="video-info" style="margin: 1px 0 0 0; color: #fff;">Loading video information...</pre>                </div>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const video = document.getElementById('hero-video');
+                    const videoInfo = document.getElementById('video-info');
+                    
+                    // Debug information
+                    function updateDebugInfo() {
+                        const info = [
+                            'Video readyState: ' + video.readyState,
+                            'Video error: ' + (video.error ? video.error.message : 'None'),
+                            'Video networkState: ' + video.networkState,
+                            'Video src: ' + (video.currentSrc || 'Not loaded'),
+                            'Video duration: ' + video.duration + ' seconds',
+                            'Video dimensions: ' + video.videoWidth + 'x' + video.videoHeight,
+                            'Browser: ' + navigator.userAgent
+                        ];
+                        videoInfo.textContent = info.join('\n');
+                    }
+                    
+                    // Check video status periodically
+                    const checkVideo = setInterval(function() {
+                        if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+                            updateDebugInfo();
+                            clearInterval(checkVideo);
+                        }
+                    }, 500);
+                    
+                    // Also update on various events
+                    ['loadeddata', 'error', 'stalled', 'suspend', 'abort', 'emptied', 'ended'].forEach(function(event) {
+                        video.addEventListener(event, updateDebugInfo);
+                    });
+                });
+            </script>
         </div>
     </section>
 
