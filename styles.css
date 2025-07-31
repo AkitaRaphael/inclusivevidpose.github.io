@@ -625,7 +625,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #007bff;
+    background: #9D00FF;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -639,7 +639,7 @@ nav {
 }
 
 .download-btn:hover {
-    background: #0056b3;
+    background: #6E00B3;
 }
 
 /* Dataset Examples Section */
